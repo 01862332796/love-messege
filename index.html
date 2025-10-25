@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do You Love Me?</title>
+<style>
+/* Reset */
+*{margin:0;padding:0;box-sizing:border-box;}
+body,html{width:100%;height:100%;overflow:hidden;font-family:'Segoe UI',sans-serif;}
+button{padding:15px 30px;font-size:1.3em;border:none;border-radius:12px;cursor:pointer;margin:20px;transition:0.3s;}
+button:hover{background:#ff66cc;color:white;}
+
+/* Common Page Style */
+.page{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  width:100%;height:100%;position:absolute;top:0;left:0;
+  transition:0.5s;opacity:0;visibility:hidden;
+}
+.page.active{opacity:1;visibility:visible;}
+
+/* Backgrounds */
+#page1{background:black;color:#ff99cc;text-align:center;}
+#yesPage,#noPage{background:radial-gradient(circle at top,#000011,#000033);color:white;text-align:center;}
+
+/* Title & Emojis */
+h1{font-size:2.5em;margin-bottom:20px;}
+p{font-size:1.4em;line-height:2em;margin:20px;}
+
+/* Sun & Moon */
+.sun, .moon{
+  position:absolute;width:100px;height:100px;border-radius:50%;
+  top:10%;right:15%;animation:rotate 20s linear infinite;
+}
+.sun{background:radial-gradient(circle,#ffdd33,#ffaa33);}
+.moon{background:radial-gradient(circle,#eee,#aaa);}
+@keyframes rotate{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+
+/* Rose Animation */
+.rose{
+  position:absolute;font-size:1.3em;animation:roseFall 5s linear infinite;
+}
+@keyframes roseFall{from{transform:translateY(-100px) rotate(0deg);opacity:1;}to{transform:translateY(800px) rotate(360deg);opacity:0;}}
+</style>
+</head>
+<body>
+
+<!-- Page 1 -->
+<div id="page1" class="page active">
+  <div style="font-size:1.4em;line-height:2em;color:#ff99cc;text-shadow:0 0 15px #ff66cc;margin-bottom:30px;max-width:80%;">
+    তুমি আমার জীবনের সবচেয়ে সুন্দর অধ্যায়,<br>
+    তোমার হাসি আমার সূর্য,<br>
+    তোমার চোখ আমার চাঁদ,<br>
+    আর তোমার ভালোবাসা আমার পুরো আকাশ। 💞
+  </div>
+
+  <h1>❤️💖💞💘👫💑💞</h1>
+  <h1>Do you love me?</h1>
+  <div>
+    <button onclick="goPage('yesPage')">Yes 💖</button>
+    <button onclick="goPage('noPage')">No 😢</button>
+  </div>
+</div>
+
+<!-- Yes Page -->
+<div id="yesPage" class="page">
+  <div class="sun"></div>
+  <div class="moon"></div>
+  <h1>💖 Yes! 💖</h1>
+  <p>তুমি আমার জীবনের সবচেয়ে সুন্দর অনুভূতি...<br>
+  🌹 তোমার বিশ্বাস আমার জীবনের শক্তি...<br>
+  🌈 প্রতিদিন তোমাকে আরও ভালোবাসবো এই প্রতিশ্রুতি রইলো...<br><br>
+  📞 আমি অপেক্ষায় আছি তোমার কল বা মেসেজের জন্য: _01862332796
+  </p>
+</div>
+
+<!-- No Page -->
+<div id="noPage" class="page">
+  <div class="sun"></div>
+  <div class="moon"></div>
+  <h1>😢 Oh...</h1>
+  <p>মনটা একটু কষ্ট পেলেও,<br>
+  আমি তোমার জন্য রইলো অগাধ শুভকামনা 💫<br><br>
+  🌹 তুমি আমার জীবনের সুন্দর মুহূর্তে চিরকাল থেকে যাবে...<br>
+  💭 ভালো থেকো সবসময়...
+  </p>
+</div>
+
+<script>
+function goPage(pageId){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+
+  // Add floating rose animation if yesPage
+  if(pageId==='yesPage'){
+    for(let i=0;i<50;i++){
+      const rose=document.createElement("div");
+      rose.className="rose";
+      rose.textContent="🌹";
+      rose.style.left=Math.random()*100+"%";
+      rose.style.animationDelay=(Math.random()*3)+"s";
+      document.body.appendChild(rose);
+      setTimeout(()=>rose.remove(),5000);
+    }
+  }
+}
+</script>
+
+</body>
+</html>
